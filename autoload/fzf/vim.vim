@@ -997,7 +997,7 @@ function! fzf#vim#buffers(...)
   let sorted = sort(buffers, 's:sort_buffers')
   let tabstop = len(max(sorted)) >= 4 ? 9 : 8
   let s:buffers_delete_file = tempname()
-  let hint = s:build_hint([['ctrl-]', 'Unload']], 1)
+  let hint = s:build_hint([['C-]', 'Unload']], 1)
   let options = ['+m', '-x', '--tiebreak=index', '--ansi', '-d', '\t', '--with-nth', '3..', '-n', '2,1..2', '--prompt', 'Buf> ', '--query', query, '--preview-window', '+{2}/2', '--tabstop', tabstop, '--bind', 'ctrl-]:execute-silent(echo {} >> '.s:buffers_delete_file.')+exclude', '--footer', hint]
   if bufnr('') == get(sorted, 0, 0)
     call extend(options, ['--sync', '--bind', 'start:pos:2'])
